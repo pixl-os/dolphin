@@ -303,7 +303,7 @@ u32 GetInLength(void)
   const s32 expected_response_length = ConvertSILengthField(state.com_csr.INLNGTH);
   return expected_response_length;
 }
-void SerialInterfaceManager::GlobalRunSIBuffer(Core::System& system, u64 user_data, s64 cycles_late)
+static void RunSIBuffer(Core::System& system, u64 user_data, s64 cycles_late)
 {
   auto& state = system.GetSerialInterfaceState().GetData();
   if (state.com_csr.TSTART)
