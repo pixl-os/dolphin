@@ -33,6 +33,7 @@ public:
   DVDInterfaceState& operator=(DVDInterfaceState&&) = delete;
   ~DVDInterfaceState();
 
+
   struct Data;
   Data& GetData() { return *m_data; }
 
@@ -45,7 +46,8 @@ enum class DICommand : u8
   Inquiry = 0x12,
   ReportKey = 0xa4,
   Read = 0xa8,
-  Seek = 0xab,
+  Write= 0xaa,
+  Seek = 0xab, // GCAM - Execute
   ReadDVDMetadata = 0xad,
   ReadDVD = 0xd0,
   ReadDVDConfig = 0xd1,

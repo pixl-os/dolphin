@@ -121,6 +121,7 @@
 #define DSP_COEF "dsp_coef.bin"
 
 #define GC_IPL "IPL.bin"
+#define GC_TRI_IPL "IPL_TRI.bin"
 #define GC_SRAM "SRAM.raw"
 #define GC_MEMCARDA "MemoryCardA"
 #define GC_MEMCARDB "MemoryCardB"
@@ -141,6 +142,7 @@
 // Subdirs in Sys
 #define GC_SYS_DIR "GC"
 #define WII_SYS_DIR "Wii"
+#define TRIFORCE_USER_DIR "Triforce"
 
 // Subdirs in Config
 #define GRAPHICSMOD_CONFIG_DIR "GraphicMods"
