@@ -914,8 +914,8 @@ static void RebuildUserDirectories(unsigned int dir_index)
   switch (dir_index)
   {
   case D_USER_IDX:
-    s_user_paths[D_GCUSER_IDX] = s_user_paths[D_USER_IDX] + GC_USER_DIR DIR_SEP;
-    s_user_paths[D_WIIROOT_IDX] = s_user_paths[D_USER_IDX] + WII_USER_DIR DIR_SEP;
+    s_user_paths[D_GCUSER_IDX] = "/recalbox/share/saves/gamecube/";
+    s_user_paths[D_WIIROOT_IDX] = "/recalbox/share/saves/wii/";
     s_user_paths[D_CONFIG_IDX] = s_user_paths[D_USER_IDX] + CONFIG_DIR DIR_SEP;
     s_user_paths[D_GAMESETTINGS_IDX] = s_user_paths[D_USER_IDX] + GAMESETTINGS_DIR DIR_SEP;
     s_user_paths[D_MAPS_IDX] = s_user_paths[D_USER_IDX] + MAPS_DIR DIR_SEP;
@@ -925,7 +925,7 @@ static void RebuildUserDirectories(unsigned int dir_index)
     s_user_paths[D_SHADERCACHE_IDX] = s_user_paths[D_CACHE_IDX] + SHADERCACHE_DIR DIR_SEP;
     s_user_paths[D_SHADERS_IDX] = s_user_paths[D_USER_IDX] + SHADERS_DIR DIR_SEP;
     s_user_paths[D_STATESAVES_IDX] = s_user_paths[D_USER_IDX] + STATESAVES_DIR DIR_SEP;
-    s_user_paths[D_SCREENSHOTS_IDX] = s_user_paths[D_USER_IDX] + SCREENSHOTS_DIR DIR_SEP;
+    s_user_paths[D_SCREENSHOTS_IDX] = "/recalbox/share/screenshots/";
     s_user_paths[D_LOAD_IDX] = s_user_paths[D_USER_IDX] + LOAD_DIR DIR_SEP;
     s_user_paths[D_HIRESTEXTURES_IDX] = s_user_paths[D_LOAD_IDX] + HIRES_TEXTURES_DIR DIR_SEP;
     s_user_paths[D_RIIVOLUTION_IDX] = s_user_paths[D_LOAD_IDX] + RIIVOLUTION_DIR DIR_SEP;
@@ -975,7 +975,7 @@ static void RebuildUserDirectories(unsigned int dir_index)
     s_user_paths[D_GBASAVES_IDX] = s_user_paths[D_GBAUSER_IDX] + GBASAVES_DIR DIR_SEP;
     s_user_paths[F_GBABIOS_IDX] = s_user_paths[D_GBAUSER_IDX] + GBA_BIOS;
 
-    s_user_paths[D_TRIUSER_IDX] = s_user_paths[D_USER_IDX] + TRIFORCE_USER_DIR DIR_SEP;
+    s_user_paths[D_TRIUSER_IDX] = "/recalbox/share/saves/triforce/";
 
     // The shader cache has moved to the cache directory, so remove the old one.
     // TODO: remove that someday.
