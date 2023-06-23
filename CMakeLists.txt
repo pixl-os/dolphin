@@ -1013,6 +1013,9 @@ add_subdirectory(Source)
 ########################################
 # Install shared data files
 #
+# install only .ini files for patches necessary for triforce games
+install(DIRECTORY Data/Sys/GameSettings/ DESTINATION ${datadir}/sys/GameSettings PATTERN)
+
 # if(NOT CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows")
   # install(DIRECTORY Data/Sys/ DESTINATION ${datadir}/sys PATTERN)
 # endif()
