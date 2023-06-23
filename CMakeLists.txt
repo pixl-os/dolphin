@@ -133,7 +133,7 @@ include(RemoveCompileFlag)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Set up paths
-set(bindir  ${CMAKE_INSTALL_PREFIX}/bin               CACHE PATH "bindir")
+set(bindir  ${CMAKE_INSTALL_PREFIX}/bin      CACHE PATH "bindir")
 set(datadir ${CMAKE_INSTALL_PREFIX}/share/dolphin-emu CACHE PATH "datadir")
 set(mandir  ${CMAKE_INSTALL_PREFIX}/share/man         CACHE PATH "mandir")
 add_definitions(-DDATA_DIR="${datadir}/")

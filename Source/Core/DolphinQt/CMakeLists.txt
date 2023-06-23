@@ -351,6 +351,8 @@ add_executable(dolphin-emu
   WiiUpdate.h
 )
 
+set_target_properties(dolphin-emu PROPERTIES OUTPUT_NAME dolphin-triforce)
+
 if (NOT WIN32)
   target_sources(dolphin-emu PRIVATE
     QtUtils/SignalDaemon.cpp
