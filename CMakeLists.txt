@@ -180,17 +180,20 @@ if(GIT_FOUND)
       OUTPUT_STRIP_TRAILING_WHITESPACE)
   set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${dolphin_git_head_symbolic_filename}")
 
+  #deactivated because use pixL version in this case
   # defines DOLPHIN_WC_REVISION
-  execute_process(WORKING_DIRECTORY ${PROJECT_SOURCE_DIR} COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
-      OUTPUT_VARIABLE DOLPHIN_WC_REVISION
-      OUTPUT_STRIP_TRAILING_WHITESPACE)
+  #execute_process(WORKING_DIRECTORY ${PROJECT_SOURCE_DIR} COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
+  #    OUTPUT_VARIABLE DOLPHIN_WC_REVISION
+  #    OUTPUT_STRIP_TRAILING_WHITESPACE)
+  
+  #deactivated because use pixL version in this case
   # defines DOLPHIN_WC_DESCRIBE
-  execute_process(WORKING_DIRECTORY ${PROJECT_SOURCE_DIR} COMMAND ${GIT_EXECUTABLE} describe --always --long --dirty
-      OUTPUT_VARIABLE DOLPHIN_WC_DESCRIBE
-      OUTPUT_STRIP_TRAILING_WHITESPACE)
+  #execute_process(WORKING_DIRECTORY ${PROJECT_SOURCE_DIR} COMMAND ${GIT_EXECUTABLE} describe --always --long --dirty
+  #    OUTPUT_VARIABLE DOLPHIN_WC_DESCRIBE
+  #    OUTPUT_STRIP_TRAILING_WHITESPACE)
 
   # remove hash (and trailing "-0" if needed) from description
-  string(REGEX REPLACE "(-0)?-[^-]+((-dirty)?)$" "\\2" DOLPHIN_WC_DESCRIBE "${DOLPHIN_WC_DESCRIBE}")
+  #string(REGEX REPLACE "(-0)?-[^-]+((-dirty)?)$" "\\2" DOLPHIN_WC_DESCRIBE "${DOLPHIN_WC_DESCRIBE}")
 
   # defines DOLPHIN_WC_BRANCH
   execute_process(WORKING_DIRECTORY ${PROJECT_SOURCE_DIR} COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
@@ -210,9 +213,12 @@ endif()
 # If Dolphin is not built from a Git repository, default the version info to
 # reasonable values.
 if(NOT DOLPHIN_WC_REVISION)
-  set(DOLPHIN_WC_DESCRIBE "${DOLPHIN_VERSION_MAJOR}.${DOLPHIN_VERSION_MINOR}")
-  set(DOLPHIN_WC_REVISION "${DOLPHIN_WC_DESCRIBE} (no further info)")
-  set(DOLPHIN_WC_BRANCH "master")
+  set(DOLPHIN_WC_DESCRIBE "${DOLPHIN_VERSION_MAJOR}.${DOLPHIN_VERSION_MINOR} (Triforce pixL fork)")
+  set(DOLPHIN_WC_REVISION "${DOLPHIN_WC_DESCRIBE} (Triforce pixL fork)")
+endif()
+
+if(NOT DOLPHIN_WC_BRANCH)
+  set(DOLPHIN_WC_BRANCH "pixL-master")
 endif()
 
 # Architecture detection and arch specific settings
