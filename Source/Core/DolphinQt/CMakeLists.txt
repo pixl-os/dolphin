@@ -512,8 +512,8 @@ if(GETTEXT_MSGFMT_EXECUTABLE)
 
     if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
       set_source_files_properties(${mo} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/${lang}.lproj")
-    else()
-      install(FILES ${mo} DESTINATION share/locale/${lang}/LC_MESSAGES)
+#    else()
+#      install(FILES ${mo} DESTINATION share/locale/${lang}/LC_MESSAGES)
     endif()
 
     if(WIN32)
