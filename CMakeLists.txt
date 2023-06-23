@@ -201,20 +201,16 @@ if(GIT_FOUND)
       OUTPUT_STRIP_TRAILING_WHITESPACE)
 endif()
 
-# version number
+# forced version number for this fork
 set(DOLPHIN_VERSION_MAJOR "5")
 set(DOLPHIN_VERSION_MINOR "0")
-if(DOLPHIN_WC_BRANCH STREQUAL "stable")
-  set(DOLPHIN_VERSION_PATCH "0")
-else()
-  set(DOLPHIN_VERSION_PATCH ${DOLPHIN_WC_REVISION})
-endif()
+set(DOLPHIN_VERSION_PATCH "0")
 
 # If Dolphin is not built from a Git repository, default the version info to
 # reasonable values.
 if(NOT DOLPHIN_WC_REVISION)
-  set(DOLPHIN_WC_DESCRIBE "${DOLPHIN_VERSION_MAJOR}.${DOLPHIN_VERSION_MINOR} (Triforce pixL fork)")
-  set(DOLPHIN_WC_REVISION "${DOLPHIN_WC_DESCRIBE} (Triforce pixL fork)")
+  set(DOLPHIN_WC_DESCRIBE "pixL fork for Triforce games")
+  set(DOLPHIN_WC_REVISION "${DOLPHIN_VERSION_MAJOR}.${DOLPHIN_VERSION_MINOR}.${DOLPHIN_VERSION_PATCH}")
 endif()
 
 if(NOT DOLPHIN_WC_BRANCH)
