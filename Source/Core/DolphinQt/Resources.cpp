@@ -97,7 +97,7 @@ void Resources::Init()
   printf("Qt BinariesPath: %s",QLibraryInfo::location(QLibraryInfo::BinariesPath).toStdString().c_str()); //	5	The location of installed Qt binaries (tools and applications).
   printf("Qt PluginsPath: %s",QLibraryInfo::location(QLibraryInfo::PluginsPath).toStdString().c_str()); //	6	The location of installed Qt plugins.
   printf("Qt ImportsPath: %s",QLibraryInfo::location(QLibraryInfo::ImportsPath).toStdString().c_str()); //	7	The location of installed QML extensions to import (QML 1.x).
-  printf("Qt Qml2ImportsPath: %s",QLibraryInfo::location(QLibraryInfo::Qml2ImportsPath).toStdString().c_str()); //	8	The location of installed QML extensions to import (QML 2.x).
+  //depreacted - printf("Qt Qml2ImportsPath: %s",QLibraryInfo::location(QLibraryInfo::Qml2ImportsPath).toStdString().c_str()); //	8	The location of installed QML extensions to import (QML 2.x).
   printf("Qt ArchDataPath: %s",QLibraryInfo::location(QLibraryInfo::ArchDataPath).toStdString().c_str()); //	9	The location of general architecture-dependent Qt data.
   printf("Qt DataPath: %s",QLibraryInfo::location(QLibraryInfo::DataPath).toStdString().c_str()); //	10	The location of general architecture-independent Qt data.
   printf("Qt TranslationsPath: %s",QLibraryInfo::location(QLibraryInfo::TranslationsPath).toStdString().c_str()); //	11	The location of translation information for Qt strings.
