@@ -30,9 +30,10 @@ QIcon Resources::LoadNamedIcon(std::string_view name, const QString& dir)
 {
   const QString base_path = dir + QLatin1Char{'/'} + QString::fromLatin1(name);
   const QString svg_path = base_path + QStringLiteral(".svg");
-
-  printf("svg_path : %s", svg_path.toStdString().c_str());
-  printf("m_svg_supported : %s", m_svg_supported ? "true" : "false");
+  
+  std::cout << "svg_path : " << svg_path.toStdString().c_str();
+  std::cout << "m_svg_supported : " << m_svg_supported ? "true" : "false";
+  std::cout.flush(); // explicitly flush here
   
   // Prefer svg
   if (m_svg_supported && QFileInfo(svg_path).exists())
@@ -45,8 +46,9 @@ QIcon Resources::LoadNamedIcon(std::string_view name, const QString& dir)
     if (scale > 1)
       suffix = QString::fromLatin1("@%1x.png").arg(scale);
 
-    printf("base_path : %s", base_path.toStdString().c_str());
-    printf("suffix : %s", suffix.toStdString().c_str());
+    std::cout << "base_path : %s", base_path.toStdString().c_str();
+    std::cout << "suffix : %s", suffix.toStdString().c_str();
+    std::cout.flush(); // explicitly flush here
   
     QPixmap pixmap(base_path + suffix);
     if (!pixmap.isNull())
@@ -90,25 +92,25 @@ QIcon Resources::GetThemeIcon(std::string_view name)
 void Resources::Init()
 {
 
-  std::cout << "test std::out";
-  std::cout.flush(); // explicitly flush here
+  //std::cout << "test std::out";
   //to check QT version used and paths associated
-  printf("Qt 'QLibraryInfo' version %s",QLibraryInfo::version().toString().toStdString().c_str());
-  printf("Qt PrefixPath: %s",QLibraryInfo::location(QLibraryInfo::PrefixPath).toStdString().c_str());        //	0	The default prefix for all paths.
-  printf("Qt DocumentationPath: %s",QLibraryInfo::location(QLibraryInfo::DocumentationPath).toStdString().c_str()); //	1	The location for documentation upon install.
-  printf("Qt HeadersPath: %s",QLibraryInfo::location(QLibraryInfo::HeadersPath).toStdString().c_str()); //	2	The location for all headers.
-  printf("Qt LibrariesPath: %s",QLibraryInfo::location(QLibraryInfo::LibrariesPath).toStdString().c_str()); //	3	The location of installed libraries.
-  printf("Qt LibraryExecutablesPath: %s",QLibraryInfo::location(QLibraryInfo::LibraryExecutablesPath).toStdString().c_str()); //	4	The location of installed executables required by libraries at runtime.
-  printf("Qt BinariesPath: %s",QLibraryInfo::location(QLibraryInfo::BinariesPath).toStdString().c_str()); //	5	The location of installed Qt binaries (tools and applications).
-  printf("Qt PluginsPath: %s",QLibraryInfo::location(QLibraryInfo::PluginsPath).toStdString().c_str()); //	6	The location of installed Qt plugins.
-  printf("Qt ImportsPath: %s",QLibraryInfo::location(QLibraryInfo::QmlImportsPath).toStdString().c_str()); //	7	The location of installed QML extensions to import (QML 1.x).
-  //depreacted - printf("Qt Qml2ImportsPath: %s",QLibraryInfo::location(QLibraryInfo::Qml2ImportsPath).toStdString().c_str()); //	8	The location of installed QML extensions to import (QML 2.x).
-  printf("Qt ArchDataPath: %s",QLibraryInfo::location(QLibraryInfo::ArchDataPath).toStdString().c_str()); //	9	The location of general architecture-dependent Qt data.
-  printf("Qt DataPath: %s",QLibraryInfo::location(QLibraryInfo::DataPath).toStdString().c_str()); //	10	The location of general architecture-independent Qt data.
-  printf("Qt TranslationsPath: %s",QLibraryInfo::location(QLibraryInfo::TranslationsPath).toStdString().c_str()); //	11	The location of translation information for Qt strings.
-  printf("Qt ExamplesPath: %s",QLibraryInfo::location(QLibraryInfo::ExamplesPath).toStdString().c_str()); //	12	The location for examples upon install.
-  printf("Qt TestsPath: %s",QLibraryInfo::location(QLibraryInfo::TestsPath).toStdString().c_str()); //	13	The location of installed Qt testcases.
-  printf("Qt SettingsPath: %s",QLibraryInfo::location(QLibraryInfo::SettingsPath).toStdString().c_str()); //	100	The location for Qt settings. Not applicable on Windows.
+  std::cout << "Qt 'QLibraryInfo' version " << QLibraryInfo::version().toString().toStdString().c_str();
+  std::cout << "Qt PrefixPath: " << QLibraryInfo::location(QLibraryInfo::PrefixPath).toStdString().c_str();        //	0	The default prefix for all paths.
+  std::cout << "Qt DocumentationPath:" << QLibraryInfo::location(QLibraryInfo::DocumentationPath).toStdString().c_str(); //	1	The location for documentation upon install.
+  std::cout << "Qt HeadersPath:" << QLibraryInfo::location(QLibraryInfo::HeadersPath).toStdString().c_str(); //	2	The location for all headers.
+  std::cout << "Qt LibrariesPath:" << QLibraryInfo::location(QLibraryInfo::LibrariesPath).toStdString().c_str(); //	3	The location of installed libraries.
+  std::cout << "Qt LibraryExecutablesPath:" << QLibraryInfo::location(QLibraryInfo::LibraryExecutablesPath).toStdString().c_str(); //	4	The location of installed executables required by libraries at runtime.
+  std::cout << "Qt BinariesPath:" << QLibraryInfo::location(QLibraryInfo::BinariesPath).toStdString().c_str(); //	5	The location of installed Qt binaries (tools and applications).
+  std::cout << "Qt PluginsPath:" << QLibraryInfo::location(QLibraryInfo::PluginsPath).toStdString().c_str(); //	6	The location of installed Qt plugins.
+  std::cout << "Qt ImportsPath:" << QLibraryInfo::location(QLibraryInfo::QmlImportsPath).toStdString().c_str(); //	7	The location of installed QML extensions to import (QML 1.x).
+  //depreacted - std::cout << "Qt Qml2ImportsPath:" << QLibraryInfo::location(QLibraryInfo::Qml2ImportsPath).toStdString().c_str(); //	8	The location of installed QML extensions to import (QML 2.x).
+  std::cout << "Qt ArchDataPath:" << QLibraryInfo::location(QLibraryInfo::ArchDataPath).toStdString().c_str(); //	9	The location of general architecture-dependent Qt data.
+  std::cout << "Qt DataPath:" << QLibraryInfo::location(QLibraryInfo::DataPath).toStdString().c_str(); //	10	The location of general architecture-independent Qt data.
+  std::cout << "Qt TranslationsPath:" << QLibraryInfo::location(QLibraryInfo::TranslationsPath).toStdString().c_str(); //	11	The location of translation information for Qt strings.
+  std::cout << "Qt ExamplesPath:" << QLibraryInfo::location(QLibraryInfo::ExamplesPath).toStdString().c_str(); //	12	The location for examples upon install.
+  std::cout << "Qt TestsPath:" << QLibraryInfo::location(QLibraryInfo::TestsPath).toStdString().c_str(); //	13	The location of installed Qt testcases.
+  std::cout << "Qt SettingsPath:" << QLibraryInfo::location(QLibraryInfo::SettingsPath).toStdString().c_str(); //	100	The location for Qt settings. Not applicable on Windows.
+  std::cout.flush(); // explicitly flush here
 
   m_svg_supported = QImageReader::supportedImageFormats().contains("svg");
 
