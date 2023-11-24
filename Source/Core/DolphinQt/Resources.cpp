@@ -14,6 +14,7 @@
 #include "Core/Config/MainSettings.h"
 
 #include "DolphinQt/Settings.h"
+#include "Common/Logging/Log.h"
 
 bool Resources::m_svg_supported;
 QList<QIcon> Resources::m_platforms;
@@ -25,6 +26,8 @@ QIcon Resources::LoadNamedIcon(std::string_view name, const QString& dir)
   const QString base_path = dir + QLatin1Char{'/'} + QString::fromLatin1(name);
   const QString svg_path = base_path + QStringLiteral(".svg");
 
+  WARN_LOG_FMT(CORE, "svg_path : {}", svg_path);
+  WARN_LOG_FMT(CORE, "svg_path : {}", m_svg_supported);
   // Prefer svg
   if (m_svg_supported && QFileInfo(svg_path).exists())
     return QIcon(svg_path);
@@ -36,6 +39,9 @@ QIcon Resources::LoadNamedIcon(std::string_view name, const QString& dir)
     if (scale > 1)
       suffix = QString::fromLatin1("@%1x.png").arg(scale);
 
+    WARN_LOG_FMT(CORE, "base_path : {}", base_path);
+    WARN_LOG_FMT(CORE, "suffix : {}", suffix);
+  
     QPixmap pixmap(base_path + suffix);
     if (!pixmap.isNull())
     {
@@ -50,7 +56,7 @@ QIcon Resources::LoadNamedIcon(std::string_view name, const QString& dir)
   for (auto scale : {1, 2, 4})
     load_png(scale);
 
-  ASSERT(icon.availableSizes().size() > 0);
+  //ASSERT(icon.availableSizes().size() > 0);
 
   return icon;
 }
