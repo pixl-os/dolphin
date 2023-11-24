@@ -7,6 +7,7 @@
 #include <QIcon>
 #include <QImageReader>
 #include <QPixmap>
+#include <QLibraryInfo>
 
 #include "Common/Assert.h"
 #include "Common/FileUtil.h"
@@ -16,6 +17,8 @@
 #include "DolphinQt/Settings.h"
 #include "Common/Logging/Log.h"
 
+#include <stdio.h>
+  
 bool Resources::m_svg_supported;
 QList<QIcon> Resources::m_platforms;
 QList<QIcon> Resources::m_countries;
@@ -26,8 +29,9 @@ QIcon Resources::LoadNamedIcon(std::string_view name, const QString& dir)
   const QString base_path = dir + QLatin1Char{'/'} + QString::fromLatin1(name);
   const QString svg_path = base_path + QStringLiteral(".svg");
 
-  ERROR_LOG_FMT(CORE, "svg_path : {}", svg_path.toStdString());
-  ERROR_LOG_FMT(CORE, "svg_path : {}", m_svg_supported);
+  printf("svg_path : %s", svg_path.toStdString().c_str());
+  printf("m_svg_supported : %s", m_svg_supported ? "true" : "false");
+  
   // Prefer svg
   if (m_svg_supported && QFileInfo(svg_path).exists())
     return QIcon(svg_path);
@@ -39,8 +43,8 @@ QIcon Resources::LoadNamedIcon(std::string_view name, const QString& dir)
     if (scale > 1)
       suffix = QString::fromLatin1("@%1x.png").arg(scale);
 
-    ERROR_LOG_FMT(CORE, "base_path : {}", base_path.toStdString());
-    ERROR_LOG_FMT(CORE, "suffix : {}", suffix.toStdString());
+    printf("base_path : %s", base_path.toStdString().c_str());
+    printf("suffix : %s", suffix.toStdString().c_str());
   
     QPixmap pixmap(base_path + suffix);
     if (!pixmap.isNull())
@@ -56,7 +60,7 @@ QIcon Resources::LoadNamedIcon(std::string_view name, const QString& dir)
   for (auto scale : {1, 2, 4})
     load_png(scale);
 
-  //ASSERT(icon.availableSizes().size() > 0);
+  ASSERT(icon.availableSizes().size() > 0);
 
   return icon;
 }
@@ -83,6 +87,24 @@ QIcon Resources::GetThemeIcon(std::string_view name)
 
 void Resources::Init()
 {
+  //to check QT version used and paths associated
+  printf("Qt 'QLibraryInfo' version %s",QLibraryInfo::version().toString().toStdString().c_str());
+  printf("Qt PrefixPath: %s",QLibraryInfo::location(QLibraryInfo::PrefixPath).toStdString().c_str());        //	0	The default prefix for all paths.
+  printf("Qt DocumentationPath: %s",QLibraryInfo::location(QLibraryInfo::DocumentationPath).toStdString().c_str()); //	1	The location for documentation upon install.
+  printf("Qt HeadersPath: %s",QLibraryInfo::location(QLibraryInfo::HeadersPath).toStdString().c_str()); //	2	The location for all headers.
+  printf("Qt LibrariesPath: %s",QLibraryInfo::location(QLibraryInfo::LibrariesPath).toStdString().c_str()); //	3	The location of installed libraries.
+  printf("Qt LibraryExecutablesPath: %s",QLibraryInfo::location(QLibraryInfo::LibraryExecutablesPath).toStdString().c_str()); //	4	The location of installed executables required by libraries at runtime.
+  printf("Qt BinariesPath: %s",QLibraryInfo::location(QLibraryInfo::BinariesPath).toStdString().c_str()); //	5	The location of installed Qt binaries (tools and applications).
+  printf("Qt PluginsPath: %s",QLibraryInfo::location(QLibraryInfo::PluginsPath).toStdString().c_str()); //	6	The location of installed Qt plugins.
+  printf("Qt ImportsPath: %s",QLibraryInfo::location(QLibraryInfo::ImportsPath).toStdString().c_str()); //	7	The location of installed QML extensions to import (QML 1.x).
+  printf("Qt Qml2ImportsPath: %s",QLibraryInfo::location(QLibraryInfo::Qml2ImportsPath).toStdString().c_str()); //	8	The location of installed QML extensions to import (QML 2.x).
+  printf("Qt ArchDataPath: %s",QLibraryInfo::location(QLibraryInfo::ArchDataPath).toStdString().c_str()); //	9	The location of general architecture-dependent Qt data.
+  printf("Qt DataPath: %s",QLibraryInfo::location(QLibraryInfo::DataPath).toStdString().c_str()); //	10	The location of general architecture-independent Qt data.
+  printf("Qt TranslationsPath: %s",QLibraryInfo::location(QLibraryInfo::TranslationsPath).toStdString().c_str()); //	11	The location of translation information for Qt strings.
+  printf("Qt ExamplesPath: %s",QLibraryInfo::location(QLibraryInfo::ExamplesPath).toStdString().c_str()); //	12	The location for examples upon install.
+  printf("Qt TestsPath: %s",QLibraryInfo::location(QLibraryInfo::TestsPath).toStdString().c_str()); //	13	The location of installed Qt testcases.
+  printf("Qt SettingsPath: %s",QLibraryInfo::location(QLibraryInfo::SettingsPath).toStdString().c_str()); //	100	The location for Qt settings. Not applicable on Windows.
+
   m_svg_supported = QImageReader::supportedImageFormats().contains("svg");
 
   for (std::string_view platform :
