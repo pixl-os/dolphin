@@ -18,7 +18,9 @@
 #include "Common/Logging/Log.h"
 
 #include <stdio.h>
-  
+#include <iostream>
+#include <string>
+
 bool Resources::m_svg_supported;
 QList<QIcon> Resources::m_platforms;
 QList<QIcon> Resources::m_countries;
@@ -87,6 +89,9 @@ QIcon Resources::GetThemeIcon(std::string_view name)
 
 void Resources::Init()
 {
+
+  std::cout << "test std::out";
+  std::cout.flush(); // explicitly flush here
   //to check QT version used and paths associated
   printf("Qt 'QLibraryInfo' version %s",QLibraryInfo::version().toString().toStdString().c_str());
   printf("Qt PrefixPath: %s",QLibraryInfo::location(QLibraryInfo::PrefixPath).toStdString().c_str());        //	0	The default prefix for all paths.
