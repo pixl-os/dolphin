@@ -761,7 +761,7 @@ const char* GetDirectoryForRegion(DiscIO::Region region, RegionDirectoryStyle st
 std::string GetBootROMPath(const std::string& region_directory)
 {
   const std::string path =
-      File::GetUserPath(D_GCUSER_IDX) + DIR_SEP + region_directory + DIR_SEP GC_IPL;
+      std::string("/recalbox/share/bios/gamecube") + DIR_SEP + region_directory + DIR_SEP + GC_IPL;
   if (!File::Exists(path))
     return File::GetSysDirectory() + GC_SYS_DIR + DIR_SEP + region_directory + DIR_SEP GC_IPL;
   return path;
